@@ -3,8 +3,8 @@ const { Boom } = require('@hapi/boom');
 const qrcode = require('qrcode-terminal');
 const { sendReply } = require('./replyHandler');
 const { saveMessage } = require('./utils');
-const { parseServiceLocation, queryListings } = require('./wpSearch'); // 👈 Old WordPress logic
-const { extractServiceLocation } = require('./geminiParser'); // 👈 NEW Gemini AI parser
+const { parseServiceLocation, queryListings } = require('./wpSearch'); 
+const { extractServiceLocation } = require('./geminiParser'); 
 
 async function connectToWhatsApp() {
     const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys');
@@ -41,8 +41,8 @@ async function connectToWhatsApp() {
                     const groupMetadata = await sock.groupMetadata(message.key.remoteJid);
                     const groupName = groupMetadata.subject;
 
-                    // Only process UnityPro group
-                    if (groupName.toLowerCase().includes('unitypro') || groupName.toLowerCase().includes('unity pro')) {
+                    // Only process (group name) group
+                    if (groupName.toLowerCase().includes('Group Name Enter') || groupName.toLowerCase().includes('unity pro')) {
                         const senderId = message.key.participant || message.key.remoteJid;
                         const senderNumber = senderId.split('@')[0];
                         let senderName = message.pushName || senderNumber;
@@ -68,35 +68,9 @@ async function connectToWhatsApp() {
 
                         saveMessage(groupName, senderName, text, timestamp);
 
-                        // ------------------------------------------------------------
-                        // 1️⃣ OLD LOGIC (commented out — regex-based)
-                        // ------------------------------------------------------------
-                        /*
-                        const { service, location } = parseServiceLocation(text);
-                        if (service) {
-                            console.log(`🔍 Searching UnityPro for "${service}"${location ? ` near "${location}"` : ''}...`);
-
-                            const results = await queryListings(service, location, 3);
-                            if (results.length > 0) {
-                                let replyMsg = `✅ *Found ${results.length} result(s) for "${service}"${location ? ` near ${location}` : ''}:*\n\n`;
-                                for (const r of results) {
-                                    replyMsg += `🔹 *${r.title}*\n🔗 ${r.url}\n`;
-                                    if (r.phone) replyMsg += `📞 ${r.phone}\n`;
-                                    if (r.excerpt) replyMsg += `📝 ${r.excerpt}\n`;
-                                    replyMsg += `\n`;
-                                }
-
-                                await sendReply(sock, message.key.remoteJid, replyMsg.trim());
-                            } else {
-                                await sendReply(sock, message.key.remoteJid, `⚠️ No listings found for "${service}"${location ? ` near ${location}` : ''}.`);
-                            }
-                        } else if (text.toLowerCase().includes('hello bot')) {
-                            await sendReply(sock, message.key.remoteJid, `Hi ${senderName}! I received: "${text}"`);
-                        }
-                        */
-
+                       
 // ------------------------------------------------------------
-// 2️⃣ NEW LOGIC (Gemini AI-based service/location detection)
+//(AI-based service/location detection)
 // ------------------------------------------------------------
 const intent = await extractServiceLocation(text);
 
@@ -164,3 +138,4 @@ console.log(`📥 [WP SEARCH RESULT] Received ${results.length} results for "${s
 }
 
 module.exports = { connectToWhatsApp };
+
