@@ -42,7 +42,7 @@ async function connectToWhatsApp() {
                     const groupName = groupMetadata.subject;
 
                     // Only process (group name) group
-                    if (groupName.toLowerCase().includes('Group Name Enter') || groupName.toLowerCase().includes('unity pro')) {
+                    if (groupName.toLowerCase().includes('Group Name Enter') || groupName.toLowerCase().includes('Group Name')) {
                         const senderId = message.key.participant || message.key.remoteJid;
                         const senderNumber = senderId.split('@')[0];
                         let senderName = message.pushName || senderNumber;
@@ -76,7 +76,7 @@ const intent = await extractServiceLocation(text);
 
 if (intent && intent.service) {
     const { service, location, keywords } = intent;
-    console.log(`🧠 Gemini detected service="${service}" location="${location || 'N/A'}"`);
+    console.log(`🧠 AI model detected service="${service}" location="${location || 'N/A'}"`);
 
     // Try full phrase first
 console.log(`🔍 [WP SEARCH] Searching WordPress for: service="${service}", location="${location}"`);
@@ -138,4 +138,5 @@ console.log(`📥 [WP SEARCH RESULT] Received ${results.length} results for "${s
 }
 
 module.exports = { connectToWhatsApp };
+
 
