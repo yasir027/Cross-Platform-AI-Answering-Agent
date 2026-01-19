@@ -4,7 +4,7 @@ const qrcode = require('qrcode-terminal');
 const { sendReply } = require('./replyHandler');
 const { saveMessage } = require('./utils');
 const { parseServiceLocation, queryListings } = require('./wpSearch'); //enter your website name which u want to use as a directory to look up
-const { extractServiceLocation } = require('./AIParser'); // your AI model shold be specified here for semantic analysis.
+const { extractServiceLocation } = require('./AIParser'); // your AI model shold be specified here for semantic analysis
 
 async function connectToWhatsApp() {
     const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys');
@@ -138,6 +138,7 @@ console.log(`📥 [WP SEARCH RESULT] Received ${results.length} results for "${s
 }
 
 module.exports = { connectToWhatsApp };
+
 
 
 
