@@ -10,9 +10,9 @@ const path = require('path');
 
 const COOKIE_FILE = path.join(__dirname, 'cookies_linkedin.json');
 const SEEN_FILE = path.join(__dirname, 'seen_linkedin.json');
-const GROUP_URL = 'https://www.linkedin.com/groups/16023047/';
+const GROUP_URL = 'https://www.linkedin.com/groups/160420737055/'; // Replace with your linkedin group link
 
-const { extractServiceLocation } = require('./geminiParser');
+const { extractServiceLocation } = require('./AIParser');
 const { queryListings } = require('./wpSearch');
 
 function sleep(ms) { return new Promise(r=>setTimeout(r, ms)); }
@@ -264,3 +264,4 @@ if (arg === '--save-cookies') {
   console.log('Usage: node puppet-linkedin.js --save-cookies  OR  node puppet-linkedin.js --bot');
   process.exit(0);
 }
+
