@@ -1,7 +1,7 @@
 require('dotenv').config();
 const axios = require('axios');
 
-const WP_BASE_URL = process.env.WP_BASE_URL?.replace(/\/$/, '') || "https://theunitypro.com";
+const WP_BASE_URL = process.env.WP_BASE_URL?.replace(/\/$/, '') || "https://websitename.com";
 
 // --- Parse queries like "plumber in delhi" ---
 function parseServiceLocation(text) {
@@ -9,7 +9,7 @@ function parseServiceLocation(text) {
   const t = text.toLowerCase();
   let service = null, location = null;
 
-  const m = t.match(/(?:need|looking for|i need|please find)?\s*([a-z\s]+?)\s+(?:in|near|at|around)\s+([a-z\s]+)/i);
+  const m = t.match(/(?:need|looking for|i need|please find)?\s*([a-z\s]+?)\s+(?:in|near|at|around)\s+([a-z\s]+)/i); // regex pattern on how users might ask a service realted query.
   if (m) {
     return { service: m[1].trim(), location: m[2].trim() };
   }
@@ -74,3 +74,4 @@ async function queryListings(service, location, limit = 3) {
 }
 
 module.exports = { parseServiceLocation, queryListings };
+
