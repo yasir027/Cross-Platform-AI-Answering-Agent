@@ -4,7 +4,7 @@ const qrcode = require('qrcode-terminal');
 const { sendReply } = require('./replyHandler');
 const { saveMessage } = require('./utils');
 const { parseServiceLocation, queryListings } = require('./wpSearch'); 
-const { extractServiceLocation } = require('./geminiParser'); 
+const { extractServiceLocation } = require('./AIParser'); 
 
 async function connectToWhatsApp() {
     const { state, saveCreds } = await useMultiFileAuthState('auth_info_baileys');
@@ -138,5 +138,6 @@ console.log(`📥 [WP SEARCH RESULT] Received ${results.length} results for "${s
 }
 
 module.exports = { connectToWhatsApp };
+
 
 
