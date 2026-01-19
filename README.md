@@ -1,4 +1,4 @@
-Social AI Automation Bot
+Cross-Platform-AI-Answering-Agent
 
 WhatsApp · Instagram · LinkedIn Community Auto-Responder
 
@@ -53,42 +53,42 @@ GEMINI_API_KEY=your_api_key_here
 Stores environment variables such as API keys.
 Required for AI parsing to work.
 
-index.js
+1)index.js
 
 Main entry point of the project.
 Used to initialize or test core logic and handlers.
 
-AIParser.js
+2)AIParser.js
 
 Use Gemini (or other AI) to extract intent, service, location, and keywords.
 Turns raw user messages into structured data.
 
-messageHandler.js
+3)messageHandler.js
 
 Central brain of the system (WhatsApp-ready).
 Decides if and how to reply based on message content.
 
-replyHandler.js
+4)replyHandler.js
 
 Formats and controls reply behavior.
 Helps avoid loops and repeated responses.
 
-wpSearch.js
+5)wpSearch.js
 
 Searches websites / directories for relevant service listings.
 Returns titles and URLs used in replies.
 
-puppet-instagram.js
+6)puppet-instagram.js
 
 Instagram automation using Puppeteer.
 Reads DMs or group messages and sends replies automatically.
 
-puppet-linkedin.js
+7)puppet-linkedin.js
 
 LinkedIn group automation using Puppeteer.
 Detects new posts, opens comment dialogs, and posts replies.
 
-listmodels.js
+8)listmodels.js
 
 Utility file for listing available AI models.
 Used mainly for testing or debugging AI setup.
