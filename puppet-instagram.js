@@ -7,9 +7,9 @@ const puppeteer = require('puppeteer');
 const COOKIE_FILE = path.join(__dirname, 'cookies_instagram.json');
 const SEEN_FILE = path.join(__dirname, 'seen_instagram.json');
 
-const THREAD_URL = "https://www.instagram.com/direct/t/800266739512559/";
+const THREAD_URL = "https://www.instagram.com/direct/t/456498319861498/"; // Your Group URL
 
-const { extractServiceLocation } = require('./geminiParser');
+const { extractServiceLocation } = require('./AIParser');
 const { queryListings } = require('./wpsearch');
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
@@ -200,3 +200,4 @@ if (arg === "--save-cookies") {
   console.log(" node puppet-instagram.js --save-cookies");
   console.log(" node puppet-instagram.js --bot");
 }
+
